@@ -1,0 +1,27 @@
+header {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    background-color:$colorBlue;
+    border-radius:0 0 350px 350px;
+    margin-bottom: -5%;
+}
+.title {
+    color: white;
+    padding: 0 1em 1em 1em;
+    &_item {
+        font-size: 2.5vw;
+        line-height:40px;
+    }
+}
+
+.logo {
+    border:solid 1px $colorBlue;
+    width: 30%;
+    border-radius:150px;
+    margin-bottom: 5%;
+    &_image {
+        border-radius: 150px; 
+    }
+}
