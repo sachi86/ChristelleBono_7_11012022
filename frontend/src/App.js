@@ -1,9 +1,9 @@
 import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/header/header.component';
-import Feed from './pages/feed';
-import Home from './pages/home';
-import Profile from './pages/profile';
+import Feed from './pages/feed.page';
+import Home from './pages/home.page';
+import Profile from './pages/profile.page';
 import Footer from './components/footer/footer.component';
 
 function App() {

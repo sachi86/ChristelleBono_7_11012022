@@ -1,0 +1,73 @@
+import { useForm } from 'react-hook-form';
+import AuthService from "../services/auth.service";
+
+
+function SignUp() {
+    const { register, handleSubmit, formState: { errors } } = useForm({
+        mode: 'onTouched'
+    }, {
+        shouldFocusError:true
+    });
+    const { isSubmitting } = errors;
+
+    const onSubmit = data => {
+        AuthService.signup(
+            { lastname: data.lastname, firstname: data.firstname, email: data.email, password: data.password, service: data.service })
+            .then(res => {
+                console.log(res.data);
+                window.location = '/feed';
+            })
+            .catch(err => { 'error to sign up!' });
+    }
+    console.log(errors);
+
+    return (
+        <form onSubmit={handleSubmit(onSubmit)} className='form'>
+            <div className='form_title'>Inscription</div>
+
+            <label htmlFor='firstname' className='form_label'>Prénom</label>
+            <br />
+            <input type='text' name='firstname' id='firstname' placeholder='Jean' {...register('firstname', { required: true, minLength: 2, pattern: /^[A-Za-z]+$/i })} />
+            <div className='error'>{errors.firstname?.type === 'required' && "Vous devez entrer un prénom"}</div>
+            <div className='error'>{errors.firstname?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
+            <div className='error'>{errors.firstname?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
+            <br />
+
+            <label htmlFor='lastname' className='form_label'>Nom</label>
+            <br />
+            <input type='text' name='lastname' id='lastname' placeholder='Doe' {...register('lastname', { required: true, minLength: 3, pattern: /^[A-Za-z]+$/i })} />
+            <div className='error'>{errors.lastname?.type === 'required' && "Vous devez entrer un nom"}</div>
+            <div className='error'>{errors.lastname?.type === 'minLength' && "Ce champ doit comprendre au moins 2 caractères"}</div>
+            <div className='error'>{errors.lastname?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
+            <br />
+
+            <label htmlFor='service' className='form_label'>Service</label>
+            <br />
+            <input type='text' name='service' id='service' placeholder='Ressources humaines' {...register('service', { required: true, minLength: 2, pattern: /^[A-Za-z]+$/i })} />
+            <div className='error'>{errors.service?.type === 'required' && "Vous devez entrer votre service"}</div>
+            <div className='error'>{errors.service?.type === 'minLength' && "Ce champ doit comprendre au moins 3 caractères"}</div>
+            <div className='error'>{errors.service?.type === 'pattern' && "Ce champ ne peut pas comprendre de caractères spéciaux"}</div>
+            <br />
+
+            <label htmlFor='email' className='form_label'>Email</label>
+            <br />
+            <input type='email' name='email' id='email' placeholder='jean.doe@mail.com' {...register('email', { required: true, pattern: /^[\w_.-]+@[a-zA-Z0-9-]+\.[a-zA-Z]{2,6}$/g })} />
+            <div className='error'>{errors.email?.type === 'required' && "Vous devez entrer une adresse mail"}</div>
+            <div className='error'>{errors.email?.type === 'pattern' && "Veuillez entrer une adresse mail valide"}</div>
+            <br />
+
+            <label htmlFor='password' className='form_label'>Mot de passe</label>
+            <br />
+            <input type='password' name='password' id='password' placeholder='Mot de passe' {...register('password', { required: true, pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/ })} />
+            <div className='error'>{errors.password?.type === 'required' && "Vous devez entrer un mot de passe"}</div>
+            <div className='error'>{errors.password?.type === 'pattern' && "Votre mot de passe doit contenir: 8 caractères minimum, 1 majuscule, 1 minuscule, 1 chiffre et 1 caractère spécial"}</div>
+            <br />
+
+            <input type='submit' disabled={isSubmitting} value="S'inscrire" className='btn' />
+        </form>
+    )
+}
+
+
+
+export default SignUp;
