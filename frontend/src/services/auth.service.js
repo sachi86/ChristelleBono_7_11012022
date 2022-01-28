@@ -1,11 +1,11 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from "axios";
 
-
 const ApiKeyAuth = process.env.REACT_APP_API_URL + "api/auth/";
 
 const signup = (firstname, lastname, service, email, password) => {
-  return axios.post(ApiKeyAuth + "signup", {
+  console.log("hello hello!")
+  return axios.post(ApiKeyAuth +"signup", {
     firstname,
     lastname,
     service,

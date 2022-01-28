@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import AuthService from "../services/auth.service";
-import Regex from "../utils/regex.util";
+import AuthService from "../../services/auth.service";
+import Regex from "../../utils/regex.util";
 
 const Login = () => {
     const { register, handleSubmit, formState: { errors } } = useForm({

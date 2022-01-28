@@ -35,9 +35,6 @@ const User = sequelize.define('User', {
     avatarProfilProfil: {
         type: DataTypes.STRING,
     },
-    likes: {
-        type: DataTypes.INTEGER,
-    }
 }, {
 
 });

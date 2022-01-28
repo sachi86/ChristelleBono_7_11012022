@@ -43,9 +43,9 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'Pasword inccorect!' });//response error unauthorized
                     }
                     res.status(200).json({//is valid
-                        userId: user._id, //get the user id 
+                        user_id: user._id, //get the user id 
                         token: jwt.sign( //function to create a token which will be used for the authentication of a user
-                            { userId: user._id },//data to encode
+                            { user_id: user._id },//data to encode
                             process.env.JWT_SECRET_TOKEN,//encoding key
                             { expiresIn: '24h' }//token expiration
                         )

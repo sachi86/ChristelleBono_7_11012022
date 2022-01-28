@@ -18,7 +18,7 @@ const PostLike = sequelize.define('PostLike', {
         allowNull: false
     }
 }, {
-    tableName: 'posts_likes',
+    tableName: 'postslikes',
     timestamps: false
 });
 

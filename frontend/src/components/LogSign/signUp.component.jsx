@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import AuthService from "../services/auth.service";
-import Regex from "../utils/regex.util";
+import AuthService from "../../services/auth.service";
+import Regex from "../../utils/regex.util";
 
 
 function SignUp() {
@@ -12,9 +12,11 @@ function SignUp() {
     const { isSubmitting } = errors;
 
     const onSubmit = data => {
+        console.log("hello world!")
         AuthService.signup(
-            { lastname: data.lastname, firstname: data.firstname, email: data.email, password: data.password, service: data.service })
+            { firstname: data.firstname, lastname: data.lastname, service: data.service, email: data.email, password: data.password })
             .then(res => {
+                console.log("hello sign up!");
                 console.log(res.data);
                 window.location = '/feed';
             })
