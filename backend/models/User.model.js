@@ -11,6 +11,14 @@ const User = sequelize.define('User', {
         primaryKey: true,
         unique: true
     },
+    firstname: {
+        type: DataTypes.STRING(25),
+        allowNull: false
+    },
+    lastname: {
+        type: DataTypes.STRING(25),
+        allowNull: false
+    },
     email: {
         type: DataTypes.STRING(150),
         unique: true,
@@ -20,19 +28,11 @@ const User = sequelize.define('User', {
         type: DataTypes.STRING,
         allowNull: false
     },
-    firstname: {
-        type: DataTypes.STRING(25),
-        allowNull: false
-    },
-    lastname: {
-        type: DataTypes.STRING(25),
-        allowNull: false
-    },
     service: {
         type: DataTypes.STRING(25),
         allowNull: false
     },
-    avatarProfilProfil: {
+    avatarProfil: {
         type: DataTypes.STRING,
     },
 }, {

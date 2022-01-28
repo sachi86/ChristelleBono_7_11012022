@@ -1,10 +1,8 @@
 const dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
-const sequelizeDB = require('../sequelize');
 const Post = require('../models/Post.model');
 const User = require('../models/User.model');
 const Comment = require('../models/Comment.model');
-const PostLike = require('../models/PostLike.model');
 const fs = require('fs');
 
 exports.listAllPost = (req, res, next) => {
@@ -80,7 +78,7 @@ exports.deletePost = (req, res, next) => {
             .then(post => {
                 const filename = post.mediaUrl.split('/images/')[1];// to return the filename
                 fs.unlink(`images/${filename}`, () => {
-                    Post.destroy({ post_id: req.params.post_id }) // delete post
+                    post.destroy({ post_id: req.params.post_id }) // delete post
                         .then(res.status(200).json({ message: "Post deleted!" }))// response request ok
                         .catch(error => res.status(400).json({ error }));// response error bad request
                 });

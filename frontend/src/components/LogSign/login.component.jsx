@@ -12,7 +12,7 @@ const Login = () => {
 
     const onSubmit = data => {
         AuthService.login(
-            { email: data.email, password: data.password })
+            data.email ,  data.password)
             .then(res => {
                 console.log(res.data);
                 window.location = '/feed';

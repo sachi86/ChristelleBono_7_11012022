@@ -12,6 +12,8 @@ const bcrypt = require('bcrypt');
 //Call the module of jsonwebtoken for token management
 const jwt = require('jsonwebtoken');
 
+const Db = require('../sequelize');
+
 //Allows you to create a new user
 exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, 10) //Allows you to hash the password
@@ -43,9 +45,9 @@ exports.login = (req, res, next) => {
                         return res.status(401).json({ error: 'Pasword inccorect!' });//response error unauthorized
                     }
                     res.status(200).json({//is valid
-                        user_id: user._id, //get the user id 
+                        user_id: user.user_id, //get the user id 
                         token: jwt.sign( //function to create a token which will be used for the authentication of a user
-                            { user_id: user._id },//data to encode
+                            { user_id: user.user_id },//data to encode
                             process.env.JWT_SECRET_TOKEN,//encoding key
                             { expiresIn: '24h' }//token expiration
                         )
@@ -55,5 +57,3 @@ exports.login = (req, res, next) => {
         })
         .catch(error => res.status(500).json({ error }));// response error server problem
 };
-
-exports.login = (req, res, next) => { }

@@ -14,7 +14,7 @@ function SignUp() {
     const onSubmit = data => {
         console.log("hello world!")
         AuthService.signup(
-            { firstname: data.firstname, lastname: data.lastname, service: data.service, email: data.email, password: data.password })
+            data.firstname, data.lastname, data.service, data.email, data.password)
             .then(res => {
                 console.log("hello sign up!");
                 console.log(res.data);
@@ -22,7 +22,6 @@ function SignUp() {
             })
             .catch(err => { 'error to sign up!' });
     }
-    console.log(errors);
 
     return (
         <form onSubmit={handleSubmit(onSubmit)} className='form'>
