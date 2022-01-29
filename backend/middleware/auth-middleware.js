@@ -11,8 +11,7 @@ dotenv.config({ path: './.env' });
 //Allows authentication verification
 module.exports = (req, res, next) => {
   try {
-    // const token = req.headers.authorization.split(' ')[1];
-    const token = req.headers["x-access-token"];
+    const token = req.headers.authorization.split(' ')[1];
     console.log(req.headers);//Get the token in the request header
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);//To décode the token with key
     const user_id = decodedToken.user_id;//Get the user id in the decode token 

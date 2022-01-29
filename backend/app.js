@@ -37,7 +37,7 @@ app.use((req, res, next) => {
     next();
 });
 
-sequelize.sync({ force: true })
+sequelize.sync()
 app.get("/", (req, res) => {
     res.json({ message: "model syncro!" });
 });

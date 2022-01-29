@@ -13,7 +13,7 @@ function App() {
             <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/feed' exact component={Feed} />
-                <Route path='/profil' exact component={Profil} />
+                <Route path='/profile' exact component={Profil} />
                 <Redirect to='/' />
             </Switch>
           <Footer/>
