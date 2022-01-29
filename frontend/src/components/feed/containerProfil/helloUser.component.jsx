@@ -1,5 +1,6 @@
-import UserService from "../../services/user.service";
+import UserService from "../../../services/user.service";
 import React, { useEffect, useState } from "react";
+import ButtonShowProfil from "./buttonShowProfil.component";
 
 const HelloUser = () => {
 
@@ -20,7 +21,7 @@ useEffect(() => {
         <section className="HelloUser">
             <h2 className="titlePage">Bonjour {firstname} !</h2>
             <img className="HelloUser_avatar" src= {avatarProfil} alt="avatar de profil" />
-             <button className="btn" >Voir Profil</button> 
+             <ButtonShowProfil/>
         </section>
     )
 }

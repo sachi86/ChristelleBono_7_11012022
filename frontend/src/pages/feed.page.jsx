@@ -1,5 +1,5 @@
 import React from 'react';
-import HelloUser from '../components/feed/HelloUser.component';
+import HelloUser from '../components/feed/containerProfil/helloUser.component';
 
 const Feed = () => {
     return (
