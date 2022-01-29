@@ -3,7 +3,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Header from './components/header/header.component';
 import Feed from './pages/feed.page';
 import Home from './pages/home.page';
-import Profil from './pages/profil.page';
+import UpdateProfil from './pages/updateProfil.page';
 import Footer from './components/footer/footer.component';
 
 function App() {
@@ -13,7 +13,7 @@ function App() {
             <Switch>
                 <Route path='/' exact component={Home} />
                 <Route path='/feed' exact component={Feed} />
-                <Route path='/profil' exact component={Profil} />
+                <Route path='/updateprofil' exact component={UpdateProfil} />
                 <Redirect to='/' />
             </Switch>
           <Footer/>

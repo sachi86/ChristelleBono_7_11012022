@@ -1,7 +1,7 @@
 import React from 'react';
 import { useHistory } from "react-router-dom";
 
-function ButtonShowProfil() {
+function ButtonUpdateProfil() {
   
   const history = useHistory();
   
@@ -11,7 +11,7 @@ function ButtonShowProfil() {
   }
 
   return (               
-          <button className="btn" onClick={routeChange}> Login</button>
+          <button className="btn" onClick={routeChange}> Modifier profil</button>
   );
 }
-export default ButtonShowProfil;
+export default ButtonUpdateProfil;

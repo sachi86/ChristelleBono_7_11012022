@@ -38,6 +38,7 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
+    console.log("hello baby");
     const postObject = JSON.parse(req.body.post);//transform a format JSON to a JS object
     const post = new Post({// create a new post models
         user_id: postObject.user_id,
@@ -45,6 +46,7 @@ exports.createPost = (req, res, next) => {
         media: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`, //Allows to generate Url media
         likes: 0,
     });
+    console.log(post);
     post.save()
         .then(() => res.status(201).json({ message: 'post is created!' }))// response to create data
         .catch(error => res.status(400).json({ error }));// response error bad request
