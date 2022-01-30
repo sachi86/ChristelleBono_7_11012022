@@ -12,7 +12,7 @@ function App() {
           <Header/>
             <Switch>
                 <Route path='/' exact component={Home} />
-                <Route path='/feed' exact component={Feed} />
+                <Route path='/feed' exact component={Feed} /> 
                 <Route path='/updateprofil' exact component={UpdateProfil} />
                 <Redirect to='/' />
             </Switch>

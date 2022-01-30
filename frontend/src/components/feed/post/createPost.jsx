@@ -31,7 +31,7 @@ function CreatePost() {
             <div className='error'>{errors.title?.type === 'required' && "Vous devez entrer un titre !"}</div>
             <br />
             <label htmlFor="mediaURL" className="form_label"></label>
-            <input type='file' name='mediaURL' id='mediaURL' {...register('mediaURL', { required: true})} />
+            <input type='file'  name='mediaURL' id='mediaURL' {...register('mediaURL', { required: true})} />
             <input type='submit' disabled={isSubmitting}  value="Publier" className='btn' />
             
         </form>
