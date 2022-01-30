@@ -38,7 +38,7 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-    console.log("hello baby");
+    console.log("hello posts");
     const postObject = JSON.parse(req.body.post);//transform a format JSON to a JS object
     const post = new Post({// create a new post models
         user_id: postObject.user_id,

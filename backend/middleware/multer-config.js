@@ -13,7 +13,7 @@ const MIME_TYPES = {
 //This is a configuration object for multer
 const storage = multer.diskStorage({//this function is used to store on disk 
     destination: (req, file, callback) => {
-        callback(null,'images');//To know in which folder the image should be saved
+        callback(null,'images/avatars');//To know in which folder the image should be saved
     },
     filename: (req, file, callback) => {
         const name = file.originalname.split(' ').join('_');//For replace spaces with underscors
