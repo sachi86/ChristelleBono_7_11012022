@@ -48,3 +48,23 @@ exports.updateProfil = (req, res, next) => {
         .catch(error => res.status(400).json({ error }));// response bad request
 };
 
+exports.deleteProfil = (req, res, next) => {
+    const user_id = req.params.user_id;
+    User.findOne({
+        attributes: ['user_id'],
+        where: { user_id: user_id }
+    })
+        .then(user => {
+            if (user) {
+                User.destroy({
+                    where: { user_id: user_id }
+                })
+                    .then(() => res.status(200).json({ message: 'Profil is deleted' }))
+                    .catch(() => res.status(500).json({ error }));
+
+            } else {
+                return res.status(404).json({ error: 'Utilisateur non trouvé' })
+            }
+        })
+        .catch(error => res.status(500).json({ error }));
+}

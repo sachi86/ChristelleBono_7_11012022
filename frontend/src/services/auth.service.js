@@ -29,9 +29,13 @@ const login = (email, password) => {
     });
 };
 
+const logout = () => {
+  sessionStorage.removeItem("user");
+};
 
 export default {
   signup,
   login,
+  logout
 };
 

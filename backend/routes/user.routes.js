@@ -17,5 +17,7 @@ router.get('/:user_id', auth, userCtrl.getOneProfil);
 
 router.put('/:user_id', auth, multer, userCtrl.updateProfil);
 
+router.delete('/:user_id', auth, userCtrl.deleteProfil);
+
 //Export the methode router
 module.exports = router;

@@ -4,14 +4,12 @@ import authHeader from "./auth-header";
 const ApiKeyPosts = process.env.REACT_APP_API_URL + "/api/";
 
 
-const CreatePost = (post_id, title, mediaURL, likes, user_id) => {
+const CreatePost = (title, mediaURL) => {
 
     return axios.post(ApiKeyPosts +"posts", {
-      post_id,
       title,
-      mediaURL,
-      likes,
-      user_id,
+      mediaURL
+
     },{ headers: authHeader() })
   };
 

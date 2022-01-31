@@ -38,18 +38,27 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.createPost = (req, res, next) => {
-    console.log("hello posts");
-    const postObject = JSON.parse(req.body.post);//transform a format JSON to a JS object
-    const post = new Post({// create a new post models
-        user_id: postObject.user_id,
-        title: postObject.title,
-        media: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`, //Allows to generate Url media
-        likes: 0,
-    });
-    console.log(post);
-    post.save()
-        .then(() => res.status(201).json({ message: 'post is created!' }))// response to create data
-        .catch(error => res.status(400).json({ error }));// response error bad request
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
+    const user_id = decodedToken.user_id;
+User.findOne({
+    where: { user_id: user_id }
+})
+    .then(userAuth => {
+        if (userAuth) {
+            const post = Post.build({
+                title: req.body.title,
+                mediaURL: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : req.body.mediaURL,
+                user_id: userAuth.user_id
+            })
+            post.save()
+                .then(() => res.status(201).json({ message :' post is created' }))
+                .catch(error => res.status(400).json({ error }));
+        } else {
+            return res.status(404).json({ error})
+        }
+    })
+    .catch(error => res.status(500).json({ error}));
 };
 
 //Middleware to change elements of the post
@@ -57,7 +66,7 @@ exports.updatePost = (req, res, next) => {
     if (req.file) { //if a media 
         Post.findById(req.params.post_id)// find one Post by id 
             .then(post => {
-                const filename = post.imageUrl.split('/images/')[1];//return the filename 
+                const filename = post.mediaURL.split('/images/')[1];//return the filename 
                 fs.unlink(`images/posts/${filename}`, () => { console.log('File of image is deleted!') });// To delete media
             })
             .catch(error => res.status(400).json({ error }));//response error bad request
@@ -91,16 +100,3 @@ exports.deletePost = (req, res, next) => {
     })
 };
 
-/* //Middleware to manage the like
-exports.postLike = (req, res, next) => {
-    Post.findOne({
-        where: { _id: req.params.postId },
-        includes: [{
-            model: PostLike,
-        }]
-    })
-        .then(postLike => {
-            const liked = req.body.like;
-            
-        }
-    }; */
