@@ -12,7 +12,7 @@ dotenv.config({ path: './.env' });
 module.exports = (req, res, next) => {
   try {
     const token = req.headers.authorization.split(' ')[1];
-    console.log(req.headers);//Get the token in the request header
+
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);//To décode the token with key
     const user_id = decodedToken.user_id;//Get the user id in the decode token 
     if (req.body.user_id && req.body.user_id !== user_id) {

@@ -15,8 +15,7 @@ const signup = (firstname, lastname, service, email, password) => {
 };
 
 const login = (email, password) => {
-  console.log("email : ", email);
-  console.log("password : ",password);
+
   return axios.post(ApiKeyAuth + "login", {
       email,
       password,

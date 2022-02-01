@@ -12,7 +12,7 @@ useEffect(() => {
         const fetchPosts = async () => {
             const result = await PostsService.listPosts();
             setData(result.data);
-            console.log(result.data);
+
         };
   fetchPosts();
 }, [])

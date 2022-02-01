@@ -15,7 +15,7 @@ const auth = require('../middleware/auth-middleware');
 //Defined route get one account with the method get
 router.get('/:user_id', auth, userCtrl.getOneProfil);
 
-router.put('/:user_id', auth,multer,userCtrl.updateProfil);
+router.post('/:user_id',auth, userCtrl.updateProfil);
 
 router.delete('/:user_id', auth, userCtrl.deleteProfil);
 

@@ -2,7 +2,7 @@ import React from 'react';
 import Log from '../components/LogSign/log.component';
 
 const Home = () => {
-    console.log("hello home");
+
     return (
         <div className="home">
             <div className="home_profil">

@@ -9,7 +9,7 @@ useEffect(() => {
     UserService.getOneProfil()
         .then((res) =>{
             setFirstname(res.data.firstname);
-            console.log(firstname);
+
 
         })
         .catch(err => { 'error to profil' });

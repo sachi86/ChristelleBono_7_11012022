@@ -11,8 +11,7 @@ useEffect(() => {
         .then((res) =>{
             setFirstname(res.data.firstname);
             setAvatarProfil(res.data.avatarProfil);
-            console.log(firstname);
-            console.log(avatarProfil);
+
         })
         .catch(err => { 'error to profil' });
 })

@@ -14,7 +14,7 @@ const Login = () => {
         AuthService.login(
             data.email ,  data.password)
             .then(res => {
-                console.log(res.data);
+ 
                 window.location = '/feed';
             })
             .catch(err => { 'Error to login!' });

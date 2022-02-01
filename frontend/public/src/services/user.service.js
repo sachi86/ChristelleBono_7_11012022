@@ -6,7 +6,7 @@ const ApiKeyProfil = process.env.REACT_APP_API_URL + "/api/profil/";
 const user = JSON.parse(sessionStorage.user);
 
 const getOneProfil = () => {
-  console.log(user.user_id);
+
     return axios.get(ApiKeyProfil + user.user_id, { headers: authHeader() 
     })
 

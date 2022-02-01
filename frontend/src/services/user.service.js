@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 import axios from "axios";
 import authHeader from "./auth-header";
+import { authHeaderShort } from "./auth-header";
 const ApiKeyProfil = process.env.REACT_APP_API_URL + "/api/profil/";
 
 
@@ -11,16 +12,15 @@ const getOneProfil = () => {
 
   };
 
-  const updateProfil = (firstname, lastname, service, email, avatarProfil) => {
+  const updateProfil = (firstname, lastname, service, email) => {
     const userAuth = JSON.parse(sessionStorage.user);
  
-    return axios.put(ApiKeyProfil + userAuth.user_id, { headers: authHeader(),'Content-Type': 'multipart/form-data'},{
+    return axios.post(ApiKeyProfil + userAuth.user_id,{
       firstname,
       lastname,
       service,
       email,
-      avatarProfil
-    })
+    },{ headers: {Authorization: authHeaderShort(),'Content-Type': 'application/json'} })
   };
 
   const deleteProfil = () => {

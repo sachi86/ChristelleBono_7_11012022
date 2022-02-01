@@ -11,11 +11,11 @@ function SignUp() {
     const { isSubmitting } = errors;
 
     const onSubmit = data => {
-        console.log("hello world!")
+ 
         AuthService.signup(
             data.firstname, data.lastname, data.service, data.email, data.password)
             .then(res => {
-                console.log(res.data);
+ 
                 window.location = '/';
             })
             .catch(err => { 'error to sign up!' });
