@@ -3,6 +3,7 @@ import UserService from "../../services/user.service";
 import React, { useEffect, useState } from "react";
 import ButtonUpdateProfil from "../profil/buttonUpdateProfil.component";
 import ButtonLogout from "./buttonLogOut.component";
+import ButtonDeleteProfil from "./buttonDeleteProfil.component";
 
 const ProfilInfo = () => {
 const [ firstname, setFirstname] = useState("");
@@ -34,6 +35,7 @@ useEffect(() => {
             </div>
             <ButtonUpdateProfil/>
             <ButtonLogout/>
+            <ButtonDeleteProfil/>
         </section>
     )
 }

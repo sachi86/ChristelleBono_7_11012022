@@ -25,9 +25,8 @@ const getOneProfil = () => {
 
   const deleteProfil = () => {
     const userAuth = JSON.parse(sessionStorage.user);
-      return axios.get(ApiKeyProfil + userAuth.user_id, { headers: authHeader() 
+      return axios.delete(ApiKeyProfil + userAuth.user_id, { headers: authHeader() 
       })
-  
     };
 
 export default {

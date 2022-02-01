@@ -34,7 +34,7 @@ exports.signup = (req, res, next) => {
 
 //Allows you to connect with your identifiers 
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })//Allows you to find the email passed in the request in the database
+    User.findOne({where:{ email: req.body.email }})//Allows you to find the email passed in the request in the database
         .then(user => {
             if (!user) {
                 return res.status(401).json({ error: 'User no found!' });//The email isn't in the database error unauthorized
