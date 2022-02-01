@@ -5,6 +5,7 @@ const Post = require('../models/Post.model');
 const User = require('../models/User.model');
 const Comment = require('../models/Comment.model');
 const PostLike = require('../models/PostLike.model');
+const jwt = require('jsonwebtoken');
 const fs = require('fs');
 
 exports.listAllPost = (req, res, next) => {
@@ -41,24 +42,24 @@ exports.createPost = (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
     const user_id = decodedToken.user_id;
-User.findOne({
-    where: { user_id: user_id }
-})
-    .then(userAuth => {
-        if (userAuth) {
-            const post = Post.build({
-                title: req.body.title,
-                mediaURL: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : req.body.mediaURL,
-                user_id: userAuth.user_id
-            })
-            post.save()
-                .then(() => res.status(201).json({ message :' post is created' }))
-                .catch(error => res.status(400).json({ error }));
-        } else {
-            return res.status(404).json({ error})
-        }
+    User.findOne({
+        where: { user_id: user_id }
     })
-    .catch(error => res.status(500).json({ error}));
+        .then(userAuth => {
+            if (userAuth) {
+                const post = Post.build({
+                    title: req.body.title,
+                    mediaURL: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : req.body.mediaURL,
+                    user_id: userAuth.user_id
+                })
+                post.save()
+                    .then(() => res.status(201).json({ message: ' post is created' }))
+                    .catch(error => res.status(400).json({ error }));
+            } else {
+                return res.status(404).json({ error })
+            }
+        })
+        .catch(error => res.status(500).json({ error }));
 };
 
 //Middleware to change elements of the post

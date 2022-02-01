@@ -21,7 +21,7 @@ useEffect(() => {
         .catch(err => { 'error to profil' });
 })
     return(
-        <section className="profil_card">
+        <section className="profil_card container">
             <img className="profil_card_image" src= {avatarProfil} alt="avatar de profil" />
             <div className="profil_card_information">
                 <ul className="profil_card_information_list">

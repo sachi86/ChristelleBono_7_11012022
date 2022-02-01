@@ -1,16 +1,15 @@
 //Call to dotenv 
 const dotenv = require('dotenv');
-
 //Call to function of dotenv config
 dotenv.config({ path: './.env' });
-
 const path = require('path');
-
 //Call to sequelize for use
 const sequelize = require('./sequelize');
-
 //Call to express for use
 const express = require('express');
+const bodyParser = require('body-parser');
+const helmet = require('helmet');
+const mongoSanitize = require('express-mongo-sanitize');
 
 //Synchronisation des tables
 const dbComment = require('./models/Comment.model');
@@ -32,10 +31,19 @@ const app = express();
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'GET, PUT, POST, DELETE, OPTIONS');
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With, x-access-token');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, Content-Length, X-Requested-With');
     res.setHeader('Access-Control-Allow-Credentials', 'true');
     next();
 });
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+app.use(mongoSanitize({
+    replaceWith: '_'
+}));
+
+app.use(helmet());
 
 sequelize.sync()
 app.get("/", (req, res) => {

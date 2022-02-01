@@ -1,11 +1,10 @@
 import React from 'react';
-
+import EditProfil from '../components/profil/profilUpdate.component';
 
 const Profil = () => {
     return (
         <div className="profil">
-            <h2 className="titlePage">Modification de votre profil</h2>
-            
+            <EditProfil/>
         </div>
     );
 };

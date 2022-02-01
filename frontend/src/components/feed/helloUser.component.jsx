@@ -15,9 +15,9 @@ useEffect(() => {
         .catch(err => { 'error to profil' });
 })
     return(
-        <section className="HelloUser">
+        <div className="HelloUser">
             <h2 className="titlePage">Bonjour {firstname} !</h2>
-        </section>
+        </div>
     )
 }
 

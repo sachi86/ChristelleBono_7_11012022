@@ -55,10 +55,10 @@ a:focus {
   background: #f05454;
   color: white;
   font-weight: bold;
-  box-shadow: inset 5px 5px 6px rgba(0, 22, 44, 0.5);
+  box-shadow: inset 10px 10px 20px rgba(212, 227, 243, 0.5);
 }
 
-.container_form {
+.container {
   background: linear-gradient(to top left, #30475e, #f05454);
   border-radius: 50px;
   -webkit-user-select: none;
@@ -66,6 +66,7 @@ a:focus {
       -ms-user-select: none;
           user-select: none;
   text-align: center;
+  box-shadow: inset 10px 10px 15px rgba(0, 22, 44, 0.5);
 }
 
 .form {
@@ -76,6 +77,12 @@ a:focus {
   font-weight: bold;
   font-size: 1.2em;
   margin-bottom: 20px;
+}
+.form_feed {
+  margin: 40px 0 40px 0;
+}
+.form_profil {
+  margin-bottom: 50px;
 }
 .form_label {
   color: white;
@@ -129,12 +136,17 @@ a:focus {
 }
 
 .error {
+  display: flex;
+  justify-content: center;
   background-color: #ffd0c4;
-  width: 300px;
   color: #f10f0f;
   white-space: normal;
   margin-top: 5px;
+  border-radius: 5px;
   font-weight: bold;
+}
+.error_password {
+  width: 300px;
 }
 
 header {

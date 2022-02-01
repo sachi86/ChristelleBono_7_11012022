@@ -16,12 +16,13 @@ useEffect(() => {
             setFirstname(res.data.firstname);
             setLastname(res.data.lastname);
             setService(res.data.service);
-            setAvatarProfil(res.data.avatarProfil);
+            if (res.data.avatarProfil) setAvatarProfil(res.data.avatarProfil)
+              else setAvatarProfil("../../images/avatar.jpg");
         })
         .catch(err => { 'error to profil' });
 })
     return(
-        <section className="profil_card">
+        <section className="profil_card container">
             <h2>Votre profil</h2>
             <img className="profil_card_image" src= {avatarProfil} alt="avatar de profil" />
             <div className="profil_card_information">

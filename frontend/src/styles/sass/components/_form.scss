@@ -1,8 +1,9 @@
-.container_form {
+.container {
   background:linear-gradient(to top left,$colorBlue, $colorPink);
   border-radius: $borderRadius;
   user-select: none;
   text-align: center;
+  box-shadow: inset 10px 10px 15px rgba(0, 22, 44, 0.5);
 }
 
 .form {
@@ -12,6 +13,12 @@
       font-weight: bold;
       font-size: 1.2em;
       margin-bottom:20px;
+    }
+    &_feed {
+      margin: 40px 0 40px 0;
+    }
+    &_profil {
+      margin-bottom:50px;
     }
     &_label {
       color: white;

@@ -17,7 +17,7 @@ const Log = ( props ) => {
     };
 
     return (
-        <div className="container_form home_container">
+        <div className="container home_container">
                 <ul>
                     <li onClick={handleModals} id="register" className={signUpModal ? "active-btn" : null} >S'inscrire</li>
                     <li onClick={handleModals} id="login" className={loginModal ? "active-btn" : null} >Se connecter</li>

@@ -6,7 +6,7 @@ function ButtonUpdateProfil() {
   const history = useHistory();
   
   const routeChange = () =>{ 
-    let path = `/profil`; 
+    let path = `/updateprofil`; 
     history.push(path);
   }
 

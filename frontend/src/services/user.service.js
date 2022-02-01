@@ -13,14 +13,14 @@ const getOneProfil = () => {
 
   };
 
-  const updateProfil = (firstname, lastname, service, email, password, avatarProfil) => {
+  const updateProfil = (firstname, lastname, service, email, avatarProfil) => {
     const userAuth = JSON.parse(sessionStorage.user);
-    return axios.post(ApiKeyProfil + userAuth.user_id,{ headers: authHeader() }, {
+    console.log("debut",firstname, lastname, service, email, userAuth, "fin");
+    return axios.put(ApiKeyProfil + userAuth.user_id, { headers: authHeader(),'Content-Type': 'multipart/form-data'},{
       firstname,
       lastname,
       service,
       email,
-      password,
       avatarProfil
     })
   };
