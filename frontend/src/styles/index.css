@@ -149,6 +149,10 @@ a:focus {
   width: 300px;
 }
 
+.mediaURL {
+  width: 300px;
+}
+
 header {
   display: flex;
   flex-direction: column;

@@ -50,13 +50,6 @@ exports.updateProfil = (req, res, next) => {
             service: req.body.service
         }; */
 
-    const profilObject = {
-        firstname: req.body.firstname,
-        lastname: req.body.lastname,
-        email: req.body.email,
-        service: req.body.service
-    }
-
     User.update({ user_id: req.params.user_id }, profilObject)// to update the profil with a modification
         .then(res.status(200).json({ message: "Profil is modified!" }))// response resuqest ok
         .catch(error => res.status(400).json({ error }));// response bad request

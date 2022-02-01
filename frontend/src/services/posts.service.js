@@ -6,11 +6,16 @@ const ApiKeyPosts = process.env.REACT_APP_API_URL + "/api/";
 
 const CreatePost = (data) => {
     return axios.post(ApiKeyPosts +"posts", data,
-    { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} },
-    )
+    { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} })
   };
 
+  const listPosts = () => {
+      return axios.get(ApiKeyPosts +"posts", { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'}
+      })
+  
+    };
 
   export default {
-      CreatePost
+      CreatePost,
+      listPosts
   }

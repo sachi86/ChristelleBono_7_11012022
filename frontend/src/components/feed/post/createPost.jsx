@@ -1,6 +1,5 @@
 import { useForm } from 'react-hook-form';
 import PostService from "../../../services/posts.service.js";
-import ReactDOM from "react-dom";
 import FormData from 'form-data'
 import React from "react";
 
@@ -20,11 +19,9 @@ function CreatePost() {
         let data = new FormData();
         data.append('image', mydata.mediaURL[0],mydata.mediaURL.name);
         data.append('title', mydata.title)
-        console.log("data",data);
       
         PostService.CreatePost(data)
             .then(res => {
-                console.log(res.data);
                 window.location = '/feed';
             })
             .catch(err => { 

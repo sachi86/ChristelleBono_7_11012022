@@ -16,7 +16,7 @@ exports.listAllPost = (req, res, next) => {
             },
             {
                 model: User,
-                attributes: ['user_id', 'firstname', 'avatarProfil']
+                attributes: ['user_id', 'firstname','lastname', 'avatarProfil']
             }],
         order: [['createdAt', 'DESC']]
     })
@@ -31,7 +31,7 @@ exports.getOnePost = (req, res, next) => {
         },
         include: [{
             model: User,
-            attributes: ['user_id', 'firstname', 'avatarProfil']
+            attributes: ['user_id', 'firstname','lastname', 'avatarProfil']
         }]
     })
         .then(post => res.status(200).json(post))

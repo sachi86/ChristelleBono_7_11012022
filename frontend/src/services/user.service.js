@@ -4,8 +4,6 @@ import authHeader from "./auth-header";
 const ApiKeyProfil = process.env.REACT_APP_API_URL + "/api/profil/";
 
 
-
-
 const getOneProfil = () => {
   const userAuth = JSON.parse(sessionStorage.user);
     return axios.get(ApiKeyProfil + userAuth.user_id, { headers: authHeader() 
@@ -15,7 +13,7 @@ const getOneProfil = () => {
 
   const updateProfil = (firstname, lastname, service, email, avatarProfil) => {
     const userAuth = JSON.parse(sessionStorage.user);
-    console.log("debut",firstname, lastname, service, email, userAuth, "fin");
+ 
     return axios.put(ApiKeyProfil + userAuth.user_id, { headers: authHeader(),'Content-Type': 'multipart/form-data'},{
       firstname,
       lastname,
