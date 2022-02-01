@@ -64,6 +64,7 @@ exports.createPost = (req, res, next) => {
 
 //Middleware to change elements of the post
 exports.updatePost = (req, res, next) => {
+
     if (req.file) { //if a media 
         Post.findById(req.params.post_id)// find one Post by id 
             .then(post => {
@@ -76,7 +77,7 @@ exports.updatePost = (req, res, next) => {
     const postObject = req.file ?//If in the request have a file
         {
             title: JSON.parse(req.body.post).title, //trandform a format Json to Js object
-            mediaUrl: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,// to generate a url media
+            mediaURL: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,// to generate a url media
         } : {
             title: req.body.title,
         };

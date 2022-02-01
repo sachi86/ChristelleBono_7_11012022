@@ -11,3 +11,15 @@ export default function authHeader() {
     return { };
   }
 }
+
+export  function authHeaderShort() {
+  const user = JSON.parse(sessionStorage.getItem('user'));
+  console.log("hello sessionStorage!");
+  console.log(user);
+  if (user && user.token) {
+    console.log(user.token);
+    return 'Bearer ' + user.token ;
+  } else {
+    return { };
+  }
+}

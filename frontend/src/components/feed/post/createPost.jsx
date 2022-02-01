@@ -1,7 +1,13 @@
 import { useForm } from 'react-hook-form';
 import PostService from "../../../services/posts.service.js";
+import ReactDOM from "react-dom";
+import FormData from 'form-data'
+import React from "react";
+
 
 function CreatePost() {
+
+
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: 'onTouched'
     }, {
@@ -9,10 +15,14 @@ function CreatePost() {
     });
     const { isSubmitting } = errors;
 
-    const onSubmit = data => {
-        console.log("hello world!")
-        PostService.CreatePost(
-            data.title, data.mediaURL)
+    const onSubmit = mydata => {
+
+        let data = new FormData();
+        data.append('image', mydata.mediaURL[0],mydata.mediaURL.name);
+        data.append('title', mydata.title)
+        console.log("data",data);
+      
+        PostService.CreatePost(data)
             .then(res => {
                 console.log(res.data);
                 window.location = '/feed';
@@ -31,6 +41,7 @@ function CreatePost() {
             <div className='error'>{errors.title?.type === 'required' && "Vous devez entrer un titre !"}</div>
             <br />
             <label htmlFor="mediaURL" className="form_label"></label>
+
             <input type='file'  name='image' id='mediaURL' {...register('mediaURL', { required: true})} />
             <div className='error'>{errors.title?.type === 'required' && "Vous choisir une image !"}</div>
             <input type='submit' disabled={isSubmitting}  value="Publier" className='btn' />
