@@ -1,6 +1,5 @@
 const dotenv = require('dotenv');
 dotenv.config({ path: '../.env' });
-const sequelizeDB = require('../sequelize');
 const Post = require('../models/Post.model');
 const User = require('../models/User.model');
 const Comment = require('../models/Comment.model');
@@ -16,7 +15,7 @@ exports.listAllPost = (req, res, next) => {
             },
             {
                 model: User,
-                attributes: ['user_id', 'firstname','lastname', 'avatarProfil']
+                attributes: ['user_id', 'firstname', 'lastname', 'avatarProfil']
             }],
         order: [['createdAt', 'DESC']]
     })
@@ -31,7 +30,7 @@ exports.getOnePost = (req, res, next) => {
         },
         include: [{
             model: User,
-            attributes: ['user_id', 'firstname','lastname', 'avatarProfil']
+            attributes: ['user_id', 'firstname', 'lastname', 'avatarProfil']
         }]
     })
         .then(post => res.status(200).json(post))
@@ -88,10 +87,10 @@ exports.updatePost = (req, res, next) => {
 };
 
 exports.deletePost = (req, res, next) => {
-    Post.findbyId({//find one post
+    Post.findOne({//find one post
         where: { post_id: req.params.post_id }
             .then(post => {
-                const filename = post.mediaUrl.split('/images/')[1];// to return the filename
+                const filename = post.mediaURL.split('/images/')[1];// to return the filename
                 fs.unlink(`images/${filename}`, () => {
                     Post.destroy({ post_id: req.params.post_id }) // delete post
                         .then(res.status(200).json({ message: "Post deleted!" }))// response request ok

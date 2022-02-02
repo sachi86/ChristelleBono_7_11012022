@@ -59,24 +59,10 @@ const handleChangeEmail = (event) => {
 
     
       const onSubmit = async (e) => {
-        e.preventDefault();
-    
-
-        // newProfil.append("avatarProfil", document.getElementById("avatarProfil").files[0])
-    
+        e.preventDefault();  
         await UserService.updateProfil(firstname,lastname,service,email);
-
-    //     const user_id = JSON.parse(sessionStorage.getItem("user")).user_id;
-    //     const user = {
-    //     user_id: user_id,
-    // };
-  
-    // sessionStorage.clear();
-    // sessionStorage.setItem("user", JSON.stringify(user));
   };
 
-
-  
     return (
       <Formik
         initialValues={{
@@ -101,16 +87,6 @@ const handleChangeEmail = (event) => {
         <ButtonReturnFeed/>
         <div className='form_title'>Modification du profil</div>
 
-        {/* <div className="avatarContainer"> 
-          <img src={`http://localhost:4000${avatarProfil}`} alt="avatar de profil" />
-          <input type="file"  onChange={handleChange} name="image" id="avatarProfil" />
-          <label htmlFor="avatarProfil">
-            <FontAwesomeIcon
-              icon={faImage}
-              className="avatarProfilChange"
-            />
-          </label>
-        </div> */}
         <label htmlFor='firstname' className='form_label'>Prénom</label>
         <br />
         <Field name="firstname" type="text" onChange={handleChangeFirstname} className="contact-form__text-input" value={firstname}/>

@@ -9,12 +9,12 @@ const ApiKeyPosts = process.env.REACT_APP_API_URL + "/api/";
     { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} })
   };
 
-  const deletePost = () => {
+  // const deletePost = ({postId}) => {
 
-      return axios.get(ApiKeyPosts  +"posts",  { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} } 
-      )
+  //     return axios.delete(ApiKeyPosts  +"posts" + {postId} ,  { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} } 
+  //     )
   
-    };
+  //   };
 
   const listPosts = () => {
       return axios.get(ApiKeyPosts +"posts", { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'}
@@ -24,6 +24,5 @@ const ApiKeyPosts = process.env.REACT_APP_API_URL + "/api/";
 
   export default {
       CreatePost,
-      listPosts,
-      deletePost
+      listPosts,    
   }

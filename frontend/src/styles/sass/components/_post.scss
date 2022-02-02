@@ -13,6 +13,12 @@
         display: flex;
         justify-content: center;
     }
+    &_list {
+        display:flex;
+        flex-direction: column;
+        align-items: center;
+        width:100%;
+    }
     &_author {
         color:white;
         margin-top:20px;
@@ -30,7 +36,6 @@
         
         width: 80%;
         border-radius:$borderRadius;
-        border: 5px solid white;
         margin-bottom:20px;
     }
 }

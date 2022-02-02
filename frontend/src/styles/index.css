@@ -123,6 +123,12 @@ a:focus {
   display: flex;
   justify-content: center;
 }
+.post_list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
 .post_author {
   color: white;
   margin-top: 20px;
@@ -139,7 +145,6 @@ a:focus {
 .post_mediaURL {
   width: 80%;
   border-radius: 50px;
-  border: 5px solid white;
   margin-bottom: 20px;
 }
 
