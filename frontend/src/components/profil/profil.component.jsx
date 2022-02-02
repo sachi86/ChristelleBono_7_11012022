@@ -24,8 +24,8 @@ useEffect(() => {
 })
     return(
         <section className="profil_card container">
-            <h2>Votre profil</h2>
-            <img className="profil_card_image" src= {avatarProfil} alt="avatar de profil" />
+            <h2 cllassName="profil_card_title">Votre profil</h2>
+
             <div className="profil_card_information">
                 <ul className="profil_card_information_list">
                     <li profil_card_information_list_item>Prénom : {firstname}</li>

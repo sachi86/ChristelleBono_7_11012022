@@ -18,13 +18,15 @@ useEffect(() => {
 }, [])
     return(
         <Fragment>
-            <ul>
+            
             {data.map(item =>(
-                <><li key={item.id}><p>{item.User.firstname} {item.User.lastname}</p></li>
-                <li key={item.id}><p>{item.title}</p></li>
-                <li key={item.id}><img className="mediaURL" src={item.mediaURL} crossorigin="anonymous" alt="media post"/></li></>
+                <ul className="post">
+                <><li className="post_item" key={item.id}><p className="post_author">{item.User.firstname} {item.User.lastname}</p></li>
+                <li className="post_item" key={item.id}><p className="post_title">{item.title}</p></li>
+                <li className="post_item" key={item.id}><img className="post_mediaURL" src={item.mediaURL} crossorigin="anonymous" alt="media post"/></li></>
+                </ul>
             ))}
-            </ul>
+            
         </Fragment>
     )
 }

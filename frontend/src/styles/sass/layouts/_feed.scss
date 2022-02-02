@@ -1,3 +1,17 @@
-.mediaURL {
-    width:300px;
+.feed {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.helloUser {
+    background:white;
+    border-radius: 70px 70px 0 0;
+    border-top: 2px solid $colorPink;
+    border-right: 2px solid $colorPink;
+    border-left: 2px solid $colorPink;
+    padding:20px;
 }

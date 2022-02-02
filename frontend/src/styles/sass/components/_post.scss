@@ -1,0 +1,36 @@
+.post {
+    background:linear-gradient(to top left,$colorBlue, $colorPink);
+    box-shadow: inset 15px 15px 20px rgba(0, 11, 22, 0.5);
+    border-radius:$borderRadius;
+    margin-bottom:40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 90%;
+    &_item {
+        width:90%;
+        display: flex;
+        justify-content: center;
+    }
+    &_author {
+        color:white;
+        margin-top:20px;
+    }
+    &_title {
+        font-weight: bold;
+        text-align: center;
+        font-size: 1.5em;
+        margin: 15px 0 15px 0;
+        background:white;
+        width: 80%;
+        border-radius: $borderRadius
+    }
+    &_mediaURL {
+        
+        width: 80%;
+        border-radius:$borderRadius;
+        border: 5px solid white;
+        margin-bottom:20px;
+    }
+}

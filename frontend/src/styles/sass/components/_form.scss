@@ -1,6 +1,7 @@
 .container {
   background:linear-gradient(to top left,$colorBlue, $colorPink);
   border-radius: $borderRadius;
+  width:90%;
   user-select: none;
   text-align: center;
   box-shadow: inset 10px 10px 15px rgba(0, 22, 44, 0.5);
@@ -8,6 +9,7 @@
 
 .form {
     padding: 20px;
+    width:90%;
     &_title {
       color:white;
       font-weight: bold;
