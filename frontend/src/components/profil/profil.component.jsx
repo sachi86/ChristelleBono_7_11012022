@@ -9,7 +9,6 @@ const ProfilInfo = () => {
 const [ firstname, setFirstname] = useState("");
 const [ lastname, setLastname] = useState("");
 const [ service, setService] = useState("");
-const [ avatarProfil, setAvatarProfil] = useState("");
 
 useEffect(() => {
     UserService.getOneProfil()
@@ -17,8 +16,6 @@ useEffect(() => {
             setFirstname(res.data.firstname);
             setLastname(res.data.lastname);
             setService(res.data.service);
-            if (res.data.avatarProfil) setAvatarProfil(res.data.avatarProfil)
-              else setAvatarProfil("../../images/avatar.jpg");
         })
         .catch(err => { 'error to profil' });
 })

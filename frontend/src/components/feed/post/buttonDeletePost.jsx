@@ -1,24 +1,25 @@
+/* eslint-disable no-restricted-globals */
 import React from 'react';
 import { useHistory } from "react-router-dom";
-import AuthService from '../../services/auth.service';
+import PostsService from '../../../services/posts.service';
 
-const ButtonDeletePost = () => {
-    const history = useHistory();
-  
-  const DeletePost = () =>{ 
-    PostsService.logout();
+
+function ButtonDeletePost() {
+
+  const history = useHistory();
+
+  function handleClick(e) {
+
+    e.preventDefault();
+    PostsService.deletePost() 
     let path = `/feed`; 
     history.push(path);
   }
 
-    return(
-        <button className="btn" onClick={DeletePost}>Se déconnecter</button>
-    );
-
-};
-
-
-
+  return (
+    <button className="btn"  onClick={handleClick}>Supprimer</button>
+  );
+}
 
 
 

@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from "yup";
 // import Regex from '../../utils/regex.util';
 import UserService from '../../services/user.service';
+import ButtonReturnFeed from "./buttonReturnFeed";
 
 const SignInSchema = Yup.object().shape({
 /*   firstname: Yup.string().required("Can't be empty"),
@@ -97,6 +98,7 @@ const handleChangeEmail = (event) => {
           return (
 
         <Form onSubmit={onSubmit} className='form container form_profil' >
+        <ButtonReturnFeed/>
         <div className='form_title'>Modification du profil</div>
 
         {/* <div className="avatarContainer"> 

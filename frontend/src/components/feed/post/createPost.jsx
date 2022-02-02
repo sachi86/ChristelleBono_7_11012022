@@ -41,7 +41,7 @@ function CreatePost() {
 
             <input type='file'  name='image' id='mediaURL' {...register('mediaURL', { required: true})} />
             <div className='error'>{errors.title?.type === 'required' && "Vous choisir une image !"}</div>
-            <input type='submit' disabled={isSubmitting}  value="Publier" className='btn' />
+            <input type='submit' disabled={isSubmitting}  value="Publier" className='btn btn_createPost' />
             
         </form>
     )
