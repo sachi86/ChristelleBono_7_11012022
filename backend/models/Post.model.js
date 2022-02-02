@@ -4,6 +4,7 @@ const { Sequelize, DataTypes } = require('sequelize');
 const Comment = require('./Comment.model');
 const PostLike = require('./PostLike.model');
 
+
 const Post = sequelize.define('Post', {
     post_id: {
         type: DataTypes.UUID,

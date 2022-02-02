@@ -63,41 +63,50 @@ exports.createPost = (req, res, next) => {
 
 //Middleware to change elements of the post
 exports.updatePost = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
+    const user_id = decodedToken.user_id;
 
-    if (req.file) { //if a media 
-        Post.findById(req.params.post_id)// find one Post by id 
-            .then(post => {
-                const filename = post.mediaURL.split('/images/')[1];//return the filename 
-                fs.unlink(`images/posts/${filename}`, () => { console.log('File of image is deleted!') });// To delete media
-            })
-            .catch(error => res.status(400).json({ error }));//response error bad request
-    }
+    Post.findOne({
+        where: {
+            post_id: req.params.post_id
+        },
+        include: [{
+            model: User,
+            attributes: ['user_id']
+        }]
+    })
+        .then(post => {
 
-    const postObject = req.file ?//If in the request have a file
-        {
-            title: JSON.parse(req.body.post).title, //trandform a format Json to Js object
-            mediaURL: `${req.protocol}://${req.get('host')}/images/posts/${req.file.filename}`,// to generate a url media
-        } : {
-            title: req.body.title,
-        };
+            if (user_id === post.user_id) {
 
-    Post.updateOne({ post_id: req.params._id }, postObject)// to update the post with a modification
-        .then(res.status(200).json({ message: "Post is update!" }))// response resuqest ok
-        .catch(error => res.status(400).json({ error }));// response bad request
+                const postObject = {
+                    title: req.body.title,
+                }
+                Post.update(postObject, { where: { post_id: req.params.post_id } })// to update the post with a modification
+                // .then(res.status(200).json({ message: "Post is update!" }))// response resuqest ok
+                // .catch(error => res.status(400).json({ error }));
+            } else {
+                res.status(401).json({ message: "Unauthorized" })
+            }
+        })
+
 };
 
 exports.deletePost = (req, res, next) => {
     Post.findOne({//find one post
         where: { post_id: req.params.post_id }
-            .then(post => {
-                const filename = post.mediaURL.split('/images/')[1];// to return the filename
-                fs.unlink(`images/${filename}`, () => {
-                    Post.destroy({ post_id: req.params.post_id }) // delete post
-                        .then(res.status(200).json({ message: "Post deleted!" }))// response request ok
-                        .catch(error => res.status(400).json({ error }));// response error bad request
-                });
-            })
-            .catch(() => res.status(500).json({ error }))
     })
+        .then(post => {
+            const filename = post.mediaURL.split('/images/posts')[1];// to return the filename
+            fs.unlink(`images/${filename}`, () => {
+                Post.destroy(
+                    { where: { post_id: req.params.post_id } }) // delete post
+                    .then(res.status(200).json({ message: "Post deleted!" }))// response request ok
+                    .catch(error => res.status(400).json({ error }));// response error bad request
+            });
+        })
+        .catch(() => res.status(500).json({ error }))
+
 };
 
