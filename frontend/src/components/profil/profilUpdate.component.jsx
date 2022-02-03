@@ -64,22 +64,22 @@ const handleChangeEmail = (event) => {
               <ButtonReturnFeed/>
               <div className='form_title'>Modification du profil</div>
 
-              <label htmlFor='firstname' className='form_label'>Prénom</label>
+              <label htmlFor='firstname'  className='form_label'>Prénom</label>
               <br />
-              <Field name="firstname" type="text" onChange={handleChangeFirstname} className="contact-form__text-input" value={firstname}/>
+              <Field name="firstname" id="firstname" type="text" onChange={handleChangeFirstname} className="contact-form__text-input" value={firstname}/>
               <br/>
               <label htmlFor='lastname'  className='form_label'>Nom</label>
               <br />
-              <Field name="lastname" type="text" onChange={handleChangeLastname} className="contact-form__text-input" value={lastname}/>
+              <Field name="lastname" id="lastname" type="text" onChange={handleChangeLastname} className="contact-form__text-input" value={lastname}/>
               <br/>
               <label htmlFor='service'  className='form_label'>Service</label>
               <br />
-              <Field name="service" type="text" onChange={handleChangeService} className="contact-form__text-input" value={service}/>
+              <Field name="service" id="service" type="text" onChange={handleChangeService} className="contact-form__text-input" value={service}/>
         
               <br/>
               <label htmlFor='email' value={email} className='form_label'>Email</label>
               <br />
-              <Field name="email" type="text" onChange={handleChangeEmail} className="contact-form__text-input" value={email}/>
+              <Field name="email" id="email" type="text" onChange={handleChangeEmail} className="contact-form__text-input" value={email}/>
               <br/>
               <input type='submit' value="modifier" className='btn' />
         
