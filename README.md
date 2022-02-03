@@ -12,16 +12,16 @@ DANS LE BACKEND
 
 4. Tapez la commande npm install 
 
-5. Puis nodemon server pour lancer le server ( si vous ne mettez rien dans le fichier .env alors par défaut, il sera executé sur le port 3000)
+5. Tapez nodemon server pour lancer le server ( si vous ne mettez rien dans le fichier .env alors par défaut, il sera executé sur le port 3000)
 
 DANS LE FRONTEND
 
-1. Tapez la commande cd frontend pour acceder au fichier forntend
+1. Tapez la commande cd frontend pour acceder au fichier frontend,
 
 3. puis npm install, 
  
-5. puis npm run serve
+5. puis npm run serve.
 
-2. Le frontend de l'application doit fonctionner sur localhost avec le port par défaut 3000 ( si vous n'avez pas changer le .env du backend alors, lorsque vous allez vous connecter, on vous demandera si vous voulez executé le server sur le port 3001 tapez y (pour yes).
+2. Le frontend de l'application doit fonctionner sur localhost avec le port par défaut 3000 ( si vous n'avez pas changer le .env du backend alors, lorsque vous allez vous connecter, on vous demandera si vous voulez executer le server sur le port 3001 tapez y (pour yes).
 
 6. C'est fini vous n'avez plus qu'a vous inscrire sur le reseau social. 
