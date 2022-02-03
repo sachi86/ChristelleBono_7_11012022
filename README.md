@@ -13,7 +13,7 @@ DANS LE BACKEND
 4. Tapez la commande npm install 
 
 5. Tapez nodemon server pour lancer le server ( si vous ne mettez rien dans le fichier .env alors par défaut, il sera executé sur le port 3000)
-
+___________________________________________________________________________________________________________________________________________________________________________________
 DANS LE FRONTEND
 
 1. Tapez la commande cd frontend pour acceder au fichier frontend,
