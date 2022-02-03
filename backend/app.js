@@ -8,7 +8,6 @@ const sequelize = require('./sequelize');
 //Call to express for use
 const express = require('express');
 const bodyParser = require('body-parser');
-const helmet = require('helmet');
 const mongoSanitize = require('express-mongo-sanitize');
 
 //Synchronisation des tables
@@ -43,7 +42,6 @@ app.use(mongoSanitize({
     replaceWith: '_'
 }));
 
-app.use(helmet());
 
 sequelize.sync()
 app.get("/", (req, res) => {

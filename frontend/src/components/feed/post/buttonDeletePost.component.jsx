@@ -11,7 +11,7 @@ function ButtonDeletePost({postId}) {
 
     const history = useHistory();//tp get the history and use to navigation
 
-      function handleClick(e) {
+      function handleClick(e) {// manage evenement to click
         console.log(postId);
         e.preventDefault();
         axios.delete(ApiKeyPost + postId ,  

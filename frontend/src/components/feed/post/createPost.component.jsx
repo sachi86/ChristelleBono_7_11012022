@@ -6,7 +6,7 @@ import React from "react";
 
 function CreatePost() {
 
-
+    //method to manage the rules of validations
     const { register, handleSubmit, formState: { errors } } = useForm({
         mode: 'onTouched'
     }, {
@@ -34,10 +34,10 @@ function CreatePost() {
 
             <label htmlFor='title' className='form_label'>Titre du post</label>
             <br />
-            <input type='text' name='title' id='title' placeholder='Titre' {...register('title', { required: true})} />
+            <input type='text' name='title' id='title' placeholder='Titre' {...register('title', { required: true})} /> 
             <div className='error'>{errors.title?.type === 'required' && "Vous devez entrer un titre !"}</div>
             <br />
-            <label htmlFor="mediaURL" className="form_label"></label>
+            <label htmlFor="mediaURL" className="form_label">Votre image</label>
 
             <input type='file'  name='image' id='mediaURL' {...register('mediaURL', { required: true})} />
             <div className='error'>{errors.title?.type === 'required' && "Vous choisir une image !"}</div>

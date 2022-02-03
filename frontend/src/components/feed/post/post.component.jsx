@@ -30,7 +30,8 @@ const modify = (postId) => {
                     <div className="post" PostUserId={post.user_id}>
                     <ul className="post_list">
                     <li className="post_items" key={post.post_id}><p className="post_author">{post.User.firstname} {post.User.lastname}</p></li>
-                    <input className="post_title" value={title} onChange={handleChangeTitle}/>
+                    <label className="form_label" name='titlePost' htmlFor='titlePost'>Votre publication</label>
+                    <input className="post_title" id="titlePost" value={title} onChange={handleChangeTitle}/>
                     <li className="post_items" ><img className="post_mediaURL" src={post.mediaURL} crossorigin="anonymous" alt="media post" /></li>
                     <div>
                     {post.user_id === sessionUserId ? <ButtonDeletePost postId={post.post_id}/> : null}
