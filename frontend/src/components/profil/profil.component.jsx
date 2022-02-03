@@ -21,7 +21,7 @@ useEffect(() => {
 })
     return(
         <section className="profil_card container">
-            <h2 cllassName="profil_card_title">Votre profil</h2>
+            <h2 className="profil_card_title">Votre profil</h2>
 
             <div className="profil_card_information">
                 <ul className="profil_card_information_list">

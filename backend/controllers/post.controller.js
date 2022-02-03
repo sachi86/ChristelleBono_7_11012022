@@ -49,7 +49,8 @@ exports.createPost = (req, res, next) => {
                 const post = Post.build({
                     title: req.body.title,
                     mediaURL: req.file ? `${req.protocol}://${req.get('host')}/images/${req.file.filename}` : req.body.mediaURL,
-                    user_id: userAuth.user_id
+                    user_id: userAuth.user_id,
+                    likes: 0
                 })
                 post.save()
                     .then(() => res.status(201).json({ message: ' post is created' }))
@@ -116,37 +117,42 @@ exports.postLike = (req, res, next) => {
     const user_id = decodedToken.user_id;
 
     Post.findOne({
-        where: { post_id: req.params.post_id },
-        include: [
-            {
-                model: PostLike,
-            },
-            {
-                model: User,
-            }],
-    })
-    
+        where: { post_id: req.params.post_id }
+    },
+        {
+            include: [
+                {
+                    model: PostLike,
+                },
+                {
+                    model: User,
+                }]
+        }
+    )
+
         .then(post => {
+            console.log(Boolean(req.body.like), req.body.like)
             if (!post) {
                 return res.status(404).json({ error: 'Post is not found' })
-            } else if (req.body.like === false) {
-                PostLike.create({
-                    where: {
-                        post_id: req.params.post_id,
-                        user_id: user_id
-                    }
+            } else if (Boolean(req.body.like)) {
+                
+                const postlike = PostLike.build({
+                    post_id: post.post_id,
+                    user_id: post.user_id
                 })
-                    .then(res => {
+                postlike.save()
+                    .then(data => {
+                        console.log("debut:", data);
                         Post.update({
-                            likes: likes++
+                            likes: Number(post.likes) + 1
                         }, {
                             where: { post_id: req.params.post_id }
                         })
                             .then(() => res.status(201).json({ message: 'Like it!' }))
                             .catch(error => res.status(500).json({ error: 'Error' }))
                     })
-                    .catch(error => res.status(400).json({ error: 'Error' }))
-            } else if (req.body.like === true) {
+                    .catch(error => res.status(400).json({ error }))
+            } else {
                 PostLike.destroy({
                     where: {
                         post_id: req.params.post_id,
@@ -154,8 +160,9 @@ exports.postLike = (req, res, next) => {
                     }
                 })
                     .then(() => {
+
                         Post.update({
-                            likes: likes--
+                            likes: Number(post.likes) - 1
                         }, {
                             where: { post_id: req.params.post_id }
                         })

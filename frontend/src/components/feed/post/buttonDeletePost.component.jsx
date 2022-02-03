@@ -17,6 +17,7 @@ function ButtonDeletePost({postId}) {
         axios.delete(ApiKeyPost + postId ,  
           { headers: {Authorization: authHeaderShort(),
             'Content-Type': 'multipart/form-data'} } )
+            document.location.reload()
         let path = `/feed`; 
       history.push(path);
     }
