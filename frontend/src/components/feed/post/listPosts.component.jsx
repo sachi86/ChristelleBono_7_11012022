@@ -3,8 +3,7 @@
 import PostsService from "../../../services/posts.service";
 import React, { useEffect, useState } from "react";
 import { Fragment } from "react/cjs/react.production.min";
-import ButtonDeletePost from "./buttonDeletePost.component";
-import Post from "./post";
+import Post from "./post.component";
 
 const ListPosts = () => {
 const [data, setData] = useState([]);

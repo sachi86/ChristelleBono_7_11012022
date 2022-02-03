@@ -30,7 +30,7 @@ exports.getOnePost = (req, res, next) => {
         },
         include: [{
             model: User,
-            attributes: ['user_id', 'firstname', 'lastname', 'avatarProfil']
+            attributes: ['user_id', 'firstname', 'lastname']
         }]
     })
         .then(post => res.status(200).json(post))
@@ -98,7 +98,7 @@ exports.deletePost = (req, res, next) => {
         where: { post_id: req.params.post_id }
     })
         .then(post => {
-            const filename = post.mediaURL.split('/images/posts')[1];// to return the filename
+            const filename = post.mediaURL.split('/images')[1];// to return the filename
             fs.unlink(`images/${filename}`, () => {
                 Post.destroy(
                     { where: { post_id: req.params.post_id } }) // delete post
@@ -109,4 +109,64 @@ exports.deletePost = (req, res, next) => {
         .catch(() => res.status(500).json({ error }))
 
 };
+
+exports.postLike = (req, res, next) => {
+    const token = req.headers.authorization.split(' ')[1];
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET_TOKEN);
+    const user_id = decodedToken.user_id;
+
+    Post.findOne({
+        where: { post_id: req.params.post_id },
+        include: [
+            {
+                model: PostLike,
+            },
+            {
+                model: User,
+            }],
+    })
+    
+        .then(post => {
+            if (!post) {
+                return res.status(404).json({ error: 'Post is not found' })
+            } else if (req.body.like === false) {
+                PostLike.create({
+                    where: {
+                        post_id: req.params.post_id,
+                        user_id: user_id
+                    }
+                })
+                    .then(res => {
+                        Post.update({
+                            likes: likes++
+                        }, {
+                            where: { post_id: req.params.post_id }
+                        })
+                            .then(() => res.status(201).json({ message: 'Like it!' }))
+                            .catch(error => res.status(500).json({ error: 'Error' }))
+                    })
+                    .catch(error => res.status(400).json({ error: 'Error' }))
+            } else if (req.body.like === true) {
+                PostLike.destroy({
+                    where: {
+                        post_id: req.params.post_id,
+                        user_id: user_id
+                    }
+                })
+                    .then(() => {
+                        Post.update({
+                            likes: likes--
+                        }, {
+                            where: { post_id: req.params.post_id }
+                        })
+                            .then(() => res.status(201).json({ message: 'Unliked this!' }))
+                            .catch(error => res.status(500).json({ error: 'Error for unliked' }))
+                    })
+                    .catch(error => res.status(400).json({ error: 'Error for update ' }))
+            }
+        })
+        .catch(error => res.status(400).json({ error: 'Error' }))
+}
+
+
 
