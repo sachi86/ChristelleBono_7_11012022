@@ -6,7 +6,7 @@
 
 DANS LE BACKEND
 
-2.Sur votre terminal allez avec la commande cd backend, dans le fichier backend.
+2. Sur votre terminal allez avec la commande cd backend, dans le fichier backend.
 
 3. Créez un fichier .env dans backend en le remplissant comme le fichier .env.example pour accéder à la base de données, le token, le port...
 
