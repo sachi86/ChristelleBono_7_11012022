@@ -9,12 +9,7 @@ const ApiKeyPosts = process.env.REACT_APP_API_URL + "/api/";
     { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} })
   };
 
-  // const deletePost = ({postId}) => {
 
-  //     return axios.delete(ApiKeyPosts  +"posts" + {postId} ,  { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'} } 
-  //     )
-  
-  //   };
 
   const listPosts = () => {
       return axios.get(ApiKeyPosts +"posts", { headers: {Authorization: authHeaderShort(),'Content-Type': 'multipart/form-data'}

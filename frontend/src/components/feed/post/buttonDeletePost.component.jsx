@@ -9,7 +9,7 @@ const ApiKeyPost = process.env.REACT_APP_API_URL + "/api/posts/"
 
 function ButtonDeletePost({postId}) {
 
-    const history = useHistory();
+    const history = useHistory();//tp get the history and use to navigation
 
       function handleClick(e) {
         console.log(postId);
